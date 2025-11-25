@@ -22,7 +22,7 @@ const defaultTodos: Todo[] = [
     title: "Дай леща коту. Любит",
     isCompleted: false,
   },
-    {
+  {
     id: 4,
     title: "Защита Up, UP, x, o, down",
     isCompleted: false,
@@ -32,18 +32,33 @@ const defaultTodos: Todo[] = [
 export default function Index() {
   const [todos, setTodos] = useState<Todo[]>(defaultTodos);
 
-  const addTodo = (title: Todo['title']) => {
-    setTodos([...todos, {id: todos.length + 1, title, isCompleted: false}])
+  const addTodo = (title: Todo["title"]) => {
+    setTodos([...todos, { id: Number(new Date()), title, isCompleted: false }]);
+  };
+
+  const onPressDelete = (id: Todo['id']) => {
+    setTodos(todos.filter((todo) => todo.id !== id))
   }
 
-  const complitedTodos = todos.filter((todo) => todo.isCompleted)
+  const onCheckTodo = (id: Todo['id']) => {
+    setTodos(todos.map((todo)=> (todo.id === id ? {...todo, isCompleted: !todo.isCompleted } : todo)))
+  }
+
+  const onUpdateTitle = (id: Todo['id'], title : Todo['title']) => {
+    setTodos(todos.map((todo)=> (todo.id === id ? {...todo, title } : todo)))
+  }
+ 
+  const complitedTodos = todos.filter((todo) => todo.isCompleted);
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
-      <Header totalTodos={todos.length} completedTodos={complitedTodos.length} />
-      <TodoCreator onAddTodo={addTodo}/>
-      <TodoList todos={todos}/>
+      <Header
+        totalTodos={todos.length}
+        completedTodos={complitedTodos.length}
+      />
+      <TodoCreator onAddTodo={addTodo} />
+        <TodoList todos={todos} onCheckTodo={onCheckTodo} onUpdateTitle={onUpdateTitle} onPressDelete={onPressDelete} />
     </View>
   );
 }

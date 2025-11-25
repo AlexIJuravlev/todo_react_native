@@ -14,8 +14,8 @@ export const Header: React.FC<HeaderProps> = ({totalTodos, completedTodos}) => {
   return (
     <View style={styles.container}>
       <View style = {styles.headerMyContent}>
-        <StyledText>Todo</StyledText>
-        <StyledText>{data}</StyledText>
+        <StyledText variant="title">Todo</StyledText>
+        <StyledText variant="subtitle">{data}</StyledText>
       </View>
       <StyledText>Выполнено {completedTodos} / {totalTodos} </StyledText>
     </View>
