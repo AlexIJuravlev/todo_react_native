@@ -1,0 +1,10 @@
+export const COLORS = {
+    PROMARY_BACKGROUND: '#363636ff',
+    SECONDARY_BACKGROUND: '#3c3c3cff',
+    PROMARY_TEXT: '#FFF',
+    PROMARY_ACTIVE: '#0010f0ff',
+    PROMARY_RED: '#ff0000ff',
+    SUCCESS: '#00ff44fe',
+    PROMATY_BORDER: '#808080',
+    PLACEHOLDER: '#808080'
+}
